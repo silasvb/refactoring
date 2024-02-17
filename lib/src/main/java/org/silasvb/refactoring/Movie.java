@@ -4,16 +4,19 @@
 package org.silasvb.refactoring;
 
 import org.silasvb.refactoring.price.Price;
+import org.silasvb.refactoring.renterpoints.RenterPoints;
 
 public abstract class Movie {
 
   private final String title;
 
   private final Price price;
+  private final RenterPoints renterPoints;
 
-  protected Movie(String title, Price price) {
+  protected Movie(String title, Price price, RenterPoints renterPoints) {
     this.title = title;
     this.price = price;
+    this.renterPoints = renterPoints;
   }
 
   public String getTitle() {
@@ -24,5 +27,7 @@ public abstract class Movie {
     return price.getCharge(daysRented);
   }
 
-  public abstract int getFrequentRenterPoints(int duration);
+  public int getFrequentRenterPoints(int duration) {
+    return renterPoints.getRenterPoints(duration);
+  }
 }
