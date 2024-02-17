@@ -3,23 +3,26 @@
  */
 package org.silasvb.refactoring;
 
-public abstract class Movie {
+import org.silasvb.refactoring.price.Price;
 
-  public static final int CHILDRENS = 2;
-  public static final int REGULAR = 0;
-  public static final int NEW_RELEASE = 1;
+public abstract class Movie {
 
   private final String title;
 
-  protected Movie(String title) {
+  private final Price price;
+
+  protected Movie(String title, Price price) {
     this.title = title;
+    this.price = price;
   }
 
   public String getTitle() {
     return title;
   }
 
-  public abstract double getCharge(int daysRented);
+  public double getCharge(int daysRented) {
+    return price.getCharge(daysRented);
+  }
 
   public abstract int getFrequentRenterPoints(int duration);
 }

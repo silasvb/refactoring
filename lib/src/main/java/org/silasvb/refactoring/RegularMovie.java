@@ -1,24 +1,15 @@
 package org.silasvb.refactoring;
 
-import org.silasvb.refactoring.price.Price;
 import org.silasvb.refactoring.price.RegularPrice;
 
 class RegularMovie extends Movie {
 
-  private final Price price;
-
   RegularMovie(String title) {
-    super(title);
-    price = new RegularPrice();
+    super(title, new RegularPrice());
   }
 
   @Override
   public int getFrequentRenterPoints(int duration) {
     return 1;
-  }
-
-  @Override
-  public double getCharge(int daysRented) {
-    return price.getCharge(daysRented);
   }
 }
