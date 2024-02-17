@@ -1,8 +1,14 @@
 package org.silasvb.refactoring;
 
+import org.silasvb.refactoring.price.RegularPrice;
+
 class RegularMovie extends Movie {
+
+  private final RegularPrice price;
+
   RegularMovie(String title) {
     super(title);
+    price = new RegularPrice();
   }
 
   @Override
@@ -12,12 +18,6 @@ class RegularMovie extends Movie {
 
   @Override
   public double getCharge(int daysRented) {
-    double result = 2;
-
-    if (daysRented > 2) {
-      result += (daysRented - 2) * 1.5;
-    }
-
-    return result;
+    return price.getCharge(daysRented);
   }
 }
