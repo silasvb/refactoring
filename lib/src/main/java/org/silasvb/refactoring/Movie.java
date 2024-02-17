@@ -3,7 +3,26 @@
  */
 package org.silasvb.refactoring;
 
-public class Movie {
+public abstract class Movie {
+
+  private static class ChildrensMovie extends Movie {
+    private ChildrensMovie(String title) {
+      super(title, CHILDRENS);
+    }
+  }
+
+  private static class RegularMovie extends Movie {
+    private RegularMovie(String title) {
+      super(title, REGULAR);
+    }
+  }
+
+  private static class NewRelease extends Movie {
+    private NewRelease(String title) {
+      super(title, NEW_RELEASE);
+    }
+  }
+
   public static final int CHILDRENS = 2;
   public static final int REGULAR = 0;
   public static final int NEW_RELEASE = 1;
@@ -11,7 +30,22 @@ public class Movie {
   private String title;
   private int priceCode;
 
-  public Movie(String title, int priceCode) {
+  public static Movie createMovie(String title, int priceCode) {
+    if (priceCode == CHILDRENS) {
+      return new ChildrensMovie(title);
+    }
+    if (priceCode == REGULAR) {
+      return new RegularMovie(title);
+    }
+
+    if (priceCode == NEW_RELEASE) {
+      return new NewRelease(title);
+    }
+
+    return null;
+  }
+
+  private Movie(String title, int priceCode) {
     this.title = title;
     this.priceCode = priceCode;
   }
@@ -22,10 +56,6 @@ public class Movie {
 
   public int getPiceCode() {
     return priceCode;
-  }
-
-  public void setPriceCode(int priceCode) {
-    this.priceCode = priceCode;
   }
 
   public double getCharge(int daysRented) {

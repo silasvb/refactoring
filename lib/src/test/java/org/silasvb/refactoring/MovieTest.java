@@ -26,7 +26,7 @@ class MovieTest {
   @ParameterizedTest
   @MethodSource("provideCharges")
   void getCharge(int duration, int movieType, double expectedCharge) {
-    assertEquals(expectedCharge, new Movie("", movieType).getCharge(duration));
+    assertEquals(expectedCharge, Movie.createMovie("", movieType).getCharge(duration));
   }
 
   private static Stream<Arguments> provideFrequentRenters() {
@@ -46,6 +46,6 @@ class MovieTest {
   @MethodSource("provideFrequentRenters")
   void getFrequentRenters(int duration, int movieType, int expectedFrequentRenterPoints) {
     assertEquals(
-        expectedFrequentRenterPoints, new Movie("", movieType).getFrequentRenterPoints(duration));
+        expectedFrequentRenterPoints, Movie.createMovie("", movieType).getFrequentRenterPoints(duration));
   }
 }

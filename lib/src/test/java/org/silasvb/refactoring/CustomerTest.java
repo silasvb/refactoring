@@ -1,6 +1,8 @@
 package org.silasvb.refactoring;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,10 +41,19 @@ class CustomerTest {
   }
 
   private static Customer getCustomerUnderTest() {
-    Movie movie1 = new Movie("T1", Movie.REGULAR);
-    Rental rental1 = new Rental(movie1, 2);
-    Movie movie2 = new Movie("T2", Movie.REGULAR);
-    Rental rental2 = new Rental(movie2, 1);
+    Movie movie1 = mock(Movie.class);
+    when(movie1.getTitle()).thenReturn("T1");
+    Rental rental1 = mock(Rental.class);
+    when(rental1.getCharge()).thenReturn(2.0);
+    when(rental1.getFrequentRenterPoints()).thenReturn(1);
+    when(rental1.getMovie()).thenReturn(movie1);
+
+    Movie movie2 = mock(Movie.class);
+    when(movie2.getTitle()).thenReturn("T2");
+    Rental rental2 = mock(Rental.class);
+    when(rental2.getCharge()).thenReturn(2.0);
+    when(rental2.getFrequentRenterPoints()).thenReturn(1);
+    when(rental2.getMovie()).thenReturn(movie2);
 
     String customerName = "SOME CUSTOMER";
     Customer customerUnderTest = new Customer(customerName);
