@@ -6,11 +6,6 @@ class NewRelease extends Movie {
   }
 
   @Override
-  public int getPiceCode() {
-    return NEW_RELEASE;
-  }
-
-  @Override
   public double getCharge(int daysRented) {
     return daysRented * 3.0;
   }

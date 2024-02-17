@@ -6,11 +6,6 @@ class ChildrensMovie extends Movie {
   }
 
   @Override
-  public int getPiceCode() {
-    return CHILDRENS;
-  }
-
-  @Override
   public double getCharge(int daysRented) {
     double result = 1.5;
     if (daysRented > 3) {

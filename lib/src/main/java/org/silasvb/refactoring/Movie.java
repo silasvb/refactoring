@@ -11,21 +11,6 @@ public abstract class Movie {
 
   private final String title;
 
-  public static Movie createMovie(String title, int priceCode) {
-    if (priceCode == CHILDRENS) {
-      return new ChildrensMovie(title);
-    }
-    if (priceCode == REGULAR) {
-      return new RegularMovie(title);
-    }
-
-    if (priceCode == NEW_RELEASE) {
-      return new NewRelease(title);
-    }
-
-    return null;
-  }
-
   protected Movie(String title) {
     this.title = title;
   }
@@ -33,8 +18,6 @@ public abstract class Movie {
   public String getTitle() {
     return title;
   }
-
-  public abstract int getPiceCode();
 
   public abstract double getCharge(int daysRented);
 

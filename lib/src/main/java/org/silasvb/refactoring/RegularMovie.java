@@ -11,11 +11,6 @@ class RegularMovie extends Movie {
   }
 
   @Override
-  public int getPiceCode() {
-    return REGULAR;
-  }
-
-  @Override
   public double getCharge(int daysRented) {
     double result = 2;
 
