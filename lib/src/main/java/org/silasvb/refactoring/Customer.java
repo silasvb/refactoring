@@ -1,14 +1,13 @@
 package org.silasvb.refactoring;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Customer {
 
-  private String name;
-  private List<Rental> rentals;
+  private final String name;
+  private final List<Rental> rentals;
 
   public Customer(String name) {
     this.name = name;
@@ -27,11 +26,10 @@ class Customer {
 
     String result = "Rental Record for " + getName() + "\n";
 
-    Enumeration<Rental> r = Collections.enumeration(rentals);
-    while (r.hasMoreElements()) {
-      Rental each = r.nextElement();
-      result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
-    }
+    result +=
+        rentals.stream()
+            .map(each -> "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n")
+            .collect(Collectors.joining());
 
     result += "Amount owed is " + getTotalCharge() + "\n";
     result += "You earned " + getTotalFrequentRenterPoints() + " frequent renter points";
@@ -41,9 +39,11 @@ class Customer {
 
   public String htmlStatement() {
     String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-    for (Rental r : rentals) {
-      result += r.getMovie().getTitle() + ": " + r.getCharge() + "<BR>\n";
-    }
+
+    result +=
+        rentals.stream()
+            .map(r -> r.getMovie().getTitle() + ": " + r.getCharge() + "<BR>\n")
+            .collect(Collectors.joining());
 
     result += "<P> You owe me <EM>" + getTotalCharge() + "</EM><P>\n";
     result +=
