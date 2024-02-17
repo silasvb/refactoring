@@ -27,13 +27,13 @@ class Customer {
 
     String result = "Rental Record for " + getName() + "\n";
 
-    Enumeration _rentals = Collections.enumeration(rentals);
-    while (_rentals.hasMoreElements()) {
-      Rental each = (Rental) _rentals.nextElement();
-      result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+    Enumeration<Rental> r = Collections.enumeration(rentals);
+    while (r.hasMoreElements()) {
+      Rental each = r.nextElement();
+      result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
     }
 
-    result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
+    result += "Amount owed is " + getTotalCharge() + "\n";
     result += "You earned " + getTotalFrequentRenterPoints() + " frequent renter points";
 
     return result;
