@@ -5,45 +5,11 @@ package org.silasvb.refactoring;
 
 public abstract class Movie {
 
-  private static class ChildrensMovie extends Movie {
-    private ChildrensMovie(String title) {
-      super(title);
-    }
-
-    @Override
-    public int getPiceCode() {
-      return CHILDRENS;
-    }
-
-  }
-
-  private static class RegularMovie extends Movie {
-    private RegularMovie(String title) {
-      super(title);
-    }
-
-    @Override
-    public int getPiceCode() {
-      return REGULAR;
-    }
-  }
-
-  private static class NewRelease extends Movie {
-    private NewRelease(String title) {
-      super(title);
-    }
-
-    @Override
-    public int getPiceCode() {
-      return NEW_RELEASE;
-    }
-  }
-
   public static final int CHILDRENS = 2;
   public static final int REGULAR = 0;
   public static final int NEW_RELEASE = 1;
 
-  private String title;
+  private final String title;
 
   public static Movie createMovie(String title, int priceCode) {
     if (priceCode == CHILDRENS) {
@@ -60,7 +26,7 @@ public abstract class Movie {
     return null;
   }
 
-  private Movie(String title) {
+  protected Movie(String title) {
     this.title = title;
   }
 
@@ -70,28 +36,7 @@ public abstract class Movie {
 
   public abstract int getPiceCode();
 
-  public double getCharge(int daysRented) {
-    double result = 0;
-    switch (getPiceCode()) {
-      case Movie.REGULAR:
-        result += 2;
-        if (daysRented > 2) {
-          result += (daysRented - 2) * 1.5;
-        }
-        break;
-      case Movie.NEW_RELEASE:
-        result += daysRented * 3;
-        break;
-
-      case Movie.CHILDRENS:
-        result += 1.5;
-        if (daysRented > 3) {
-          result += (daysRented - 3) * 1.5;
-        }
-        break;
-    }
-    return result;
-  }
+  public abstract double getCharge(int daysRented);
 
   public int getFrequentRenterPoints(int duration) {
     int frequentRenterPoints = 1;
