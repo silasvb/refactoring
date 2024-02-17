@@ -31,20 +31,21 @@ class MovieTest {
 
   private static Stream<Arguments> provideFrequentRenters() {
     return Stream.of(
-            Arguments.of(0, Movie.NEW_RELEASE, 1),
-            Arguments.of(0, Movie.REGULAR, 1),
-            Arguments.of(0, Movie.CHILDRENS, 1),
-            Arguments.of(1, Movie.NEW_RELEASE, 1),
-            Arguments.of(1, Movie.CHILDRENS, 1),
-            Arguments.of(1, Movie.REGULAR, 1),
-            Arguments.of(2, Movie.NEW_RELEASE, 2),
-            Arguments.of(2, Movie.CHILDRENS, 1),
-            Arguments.of(2, Movie.REGULAR, 1));
+        Arguments.of(0, Movie.NEW_RELEASE, 1),
+        Arguments.of(0, Movie.REGULAR, 1),
+        Arguments.of(0, Movie.CHILDRENS, 1),
+        Arguments.of(1, Movie.NEW_RELEASE, 1),
+        Arguments.of(1, Movie.CHILDRENS, 1),
+        Arguments.of(1, Movie.REGULAR, 1),
+        Arguments.of(2, Movie.NEW_RELEASE, 2),
+        Arguments.of(2, Movie.CHILDRENS, 1),
+        Arguments.of(2, Movie.REGULAR, 1));
   }
 
   @ParameterizedTest
   @MethodSource("provideFrequentRenters")
   void getFrequentRenters(int duration, int movieType, int expectedFrequentRenterPoints) {
-    assertEquals(expectedFrequentRenterPoints, new Movie("", movieType).getFrequentRenterPoints(duration));
+    assertEquals(
+        expectedFrequentRenterPoints, new Movie("", movieType).getFrequentRenterPoints(duration));
   }
 }
