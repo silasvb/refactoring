@@ -8,6 +8,18 @@ import org.silasvb.refactoring.renterpoints.RenterPoints;
 
 public abstract class Movie {
 
+  public static Movie newChildrensMovie(String title) {
+    return new ChildrensMovie(title);
+  }
+
+  public static Movie newNewRelease(String title) {
+    return new NewRelease(title);
+  }
+
+  public static Movie newRegularMovie(String title) {
+    return new RegularMovie(title);
+  }
+
   private final String title;
 
   private final Price price;
