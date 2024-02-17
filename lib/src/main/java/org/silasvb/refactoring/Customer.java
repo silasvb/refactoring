@@ -39,6 +39,18 @@ class Customer {
     return result;
   }
 
+  public String htmlStatement() {
+    String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
+    for(Rental r : rentals) {
+      result += r.getMovie().getTitle() + ": " + r.getCharge() + "<BR>\n";
+    }
+
+    result += "<P> You owe me <EM>" + getTotalCharge() + "</EM><P>\n";
+    result += "On this rental you earned <EM>" + getTotalFrequentRenterPoints() + "</EM> frequent renter points<P>";
+
+    return result;
+  }
+
   private double getTotalCharge() {
     return rentals.stream().mapToDouble(Rental::getCharge).sum();
   }
