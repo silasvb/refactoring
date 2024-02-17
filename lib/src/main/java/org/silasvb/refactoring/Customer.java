@@ -41,12 +41,15 @@ class Customer {
 
   public String htmlStatement() {
     String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-    for(Rental r : rentals) {
+    for (Rental r : rentals) {
       result += r.getMovie().getTitle() + ": " + r.getCharge() + "<BR>\n";
     }
 
     result += "<P> You owe me <EM>" + getTotalCharge() + "</EM><P>\n";
-    result += "On this rental you earned <EM>" + getTotalFrequentRenterPoints() + "</EM> frequent renter points<P>";
+    result +=
+        "On this rental you earned <EM>"
+            + getTotalFrequentRenterPoints()
+            + "</EM> frequent renter points<P>";
 
     return result;
   }
@@ -56,7 +59,6 @@ class Customer {
   }
 
   private int getTotalFrequentRenterPoints() {
-    return  rentals.stream().mapToInt(Rental::getFrequentRenterPoints).sum();
+    return rentals.stream().mapToInt(Rental::getFrequentRenterPoints).sum();
   }
-
 }

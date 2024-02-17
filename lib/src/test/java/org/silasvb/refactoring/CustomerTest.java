@@ -1,22 +1,18 @@
 package org.silasvb.refactoring;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 class CustomerTest {
-  
+
   @Test
   void multipleMovieTest() {
     Customer customerUnderTest = getCustomerUnderTest();
     String result = customerUnderTest.statement();
 
-    String expected = """
+    String expected =
+        """
             Rental Record for SOME CUSTOMER
             \tT1\t2.0
             \tT2\t2.0
@@ -31,7 +27,8 @@ class CustomerTest {
     Customer customerUnderTest = getCustomerUnderTest();
     String result = customerUnderTest.htmlStatement();
 
-    String expected = """
+    String expected =
+        """
             <H1>Rentals for <EM>SOME CUSTOMER</EM></H1><P>
             T1: 2.0<BR>
             T2: 2.0<BR>
@@ -53,5 +50,4 @@ class CustomerTest {
     customerUnderTest.addRental(rental2);
     return customerUnderTest;
   }
-
 }

@@ -1,33 +1,26 @@
 package org.silasvb.refactoring;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class RentalTest {
 
-  private static Stream<Arguments> provideCharges() {
-    return Stream.of(
-        Arguments.of(0, 2f, Movie.REGULAR),
-        Arguments.of(2, 2f, Movie.REGULAR),
-        Arguments.of(3, 3.5, Movie.REGULAR),
-        Arguments.of(6, 8f, Movie.REGULAR),
-        Arguments.of(0, 0, Movie.NEW_RELEASE),
-        Arguments.of(1, 3, Movie.NEW_RELEASE),
-        Arguments.of(2, 6, Movie.NEW_RELEASE),
-        Arguments.of(0, 1.5, Movie.CHILDRENS),
-        Arguments.of(3, 1.5, Movie.CHILDRENS),
-        Arguments.of(4, 3, Movie.CHILDRENS));
-  }
+  @Test
+  void getChargeTest() {
+    Movie movie = mock(Movie.class);
+    double charge = 35.0;
+    when(movie.getCharge(any())).thenReturn(charge);
+    Rental rental = new Rental(movie, 2);
 
-  @ParameterizedTest
-  @MethodSource("provideCharges")
-  void getChargeTest(int duration, double expectedAmount, int movieType) {
-    Rental rental = new Rental(new Movie("", movieType), duration);
-    assertEquals(expectedAmount, rental.getCharge());
+    assertEquals(charge, rental.getCharge());
   }
 
   private static Stream<Arguments> provideRentalPoints() {
@@ -44,5 +37,6 @@ class RentalTest {
 
   @ParameterizedTest
   @MethodSource("provideRentalPoints")
-  void getRentalPoints(int duration, int movieType, int expectedRentalPoints) {}
+  void getRentalPoints(int duration, int movieType, int expectedRentalPoints) {
+  }
 }
