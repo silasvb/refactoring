@@ -37,6 +37,6 @@ class NewReleaseTest {
   @ParameterizedTest
   @ValueSource(ints = {2, 5})
   void getFrequentRenterPointsFor2OrMoreDaysTest(int duration) {
-    assertEquals(2, new NewRelease("").getFrequentRenterPoints(duration));
+    assertEquals(2, movie.getFrequentRenterPoints(duration));
   }
 }

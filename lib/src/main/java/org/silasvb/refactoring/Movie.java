@@ -3,21 +3,26 @@
  */
 package org.silasvb.refactoring;
 
+import org.silasvb.refactoring.price.ChildrensMoviePrice;
+import org.silasvb.refactoring.price.NewReleasePrice;
 import org.silasvb.refactoring.price.Price;
+import org.silasvb.refactoring.price.RegularPrice;
+import org.silasvb.refactoring.renterpoints.BasicRenterPoints;
+import org.silasvb.refactoring.renterpoints.NewReleaseRenterPoints;
 import org.silasvb.refactoring.renterpoints.RenterPoints;
 
-public abstract class Movie {
+public class Movie {
 
   public static Movie newChildrensMovie(String title) {
-    return new ChildrensMovie(title);
+    return new Movie(title, new ChildrensMoviePrice(), new BasicRenterPoints());
   }
 
   public static Movie newNewRelease(String title) {
-    return new NewRelease(title);
+    return new Movie(title, new NewReleasePrice(), new NewReleaseRenterPoints());
   }
 
   public static Movie newRegularMovie(String title) {
-    return new RegularMovie(title);
+    return new Movie(title, new RegularPrice(), new BasicRenterPoints());
   }
 
   private final String title;
