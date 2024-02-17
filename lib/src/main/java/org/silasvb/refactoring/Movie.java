@@ -7,19 +7,35 @@ public abstract class Movie {
 
   private static class ChildrensMovie extends Movie {
     private ChildrensMovie(String title) {
-      super(title, CHILDRENS);
+      super(title);
     }
+
+    @Override
+    public int getPiceCode() {
+      return CHILDRENS;
+    }
+
   }
 
   private static class RegularMovie extends Movie {
     private RegularMovie(String title) {
-      super(title, REGULAR);
+      super(title);
+    }
+
+    @Override
+    public int getPiceCode() {
+      return REGULAR;
     }
   }
 
   private static class NewRelease extends Movie {
     private NewRelease(String title) {
-      super(title, NEW_RELEASE);
+      super(title);
+    }
+
+    @Override
+    public int getPiceCode() {
+      return NEW_RELEASE;
     }
   }
 
@@ -28,7 +44,6 @@ public abstract class Movie {
   public static final int NEW_RELEASE = 1;
 
   private String title;
-  private int priceCode;
 
   public static Movie createMovie(String title, int priceCode) {
     if (priceCode == CHILDRENS) {
@@ -45,18 +60,15 @@ public abstract class Movie {
     return null;
   }
 
-  private Movie(String title, int priceCode) {
+  private Movie(String title) {
     this.title = title;
-    this.priceCode = priceCode;
   }
 
   public String getTitle() {
     return title;
   }
 
-  public int getPiceCode() {
-    return priceCode;
-  }
+  public abstract int getPiceCode();
 
   public double getCharge(int daysRented) {
     double result = 0;
