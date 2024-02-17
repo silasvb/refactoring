@@ -50,4 +50,13 @@ public class Movie {
     }
     return result;
   }
+
+  public int getFrequentRenterPoints(int duration) {
+    int frequentRenterPoints = 1;
+
+    if (getPiceCode() == Movie.NEW_RELEASE && duration > 1) {
+      frequentRenterPoints++;
+    }
+    return frequentRenterPoints;
+  }
 }
