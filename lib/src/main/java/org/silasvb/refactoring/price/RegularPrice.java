@@ -1,6 +1,7 @@
 package org.silasvb.refactoring.price;
 
-public class RegularPrice {
+public class RegularPrice implements Price {
+  @Override
   public double getCharge(int duration) {
     double result = 2;
 

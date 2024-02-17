@@ -1,10 +1,11 @@
 package org.silasvb.refactoring;
 
+import org.silasvb.refactoring.price.Price;
 import org.silasvb.refactoring.price.RegularPrice;
 
 class RegularMovie extends Movie {
 
-  private final RegularPrice price;
+  private final Price price;
 
   RegularMovie(String title) {
     super(title);
