@@ -38,12 +38,5 @@ public abstract class Movie {
 
   public abstract double getCharge(int daysRented);
 
-  public int getFrequentRenterPoints(int duration) {
-    int frequentRenterPoints = 1;
-
-    if (getPiceCode() == Movie.NEW_RELEASE && duration > 1) {
-      frequentRenterPoints++;
-    }
-    return frequentRenterPoints;
-  }
+  public abstract int getFrequentRenterPoints(int duration);
 }
